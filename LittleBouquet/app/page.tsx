@@ -12,20 +12,27 @@ const sections=[
 ] as const;
 const initial={message:''};
 const draftKey='little-bouquet:draft-v1';
-const props=['♡','🌷','🎨','✿','🎀','💌'];
+const poses=[
+  {image:'pax',prop:'♡'},
+  {image:'pax-spread',prop:'🌷'},
+  {image:'pax-curious',prop:'🎨'},
+  {image:'pax-spread',prop:''},
+  {image:'pax-ribbon',prop:''},
+  {image:'pax',prop:'💌'},
+];
 
 function PenguinArt({step}:{step:number}) {
+  const pose=poses[step];
   return <div className={`penguin-art pose-${step}`} aria-hidden="true">
     <div className="halo" />
     <span className="doodle d1">✧</span><span className="doodle d2">♡</span><span className="doodle d3">✦</span>
     <span className="doodle d4">✧</span><span className="doodle d5">·</span><span className="doodle d6">♡</span>
     <div className="ground" />
-    <div className="pax-movement">
-      {/* The supplied illustration is used directly so Pax stays recognizable. */}
+    <div className="pax-movement" key={step}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="pax" src="/pax.webp" alt="" width={330} height={477} fetchPriority="high"/>
-      {(step===0 || step===3) && <img className="pax-wink" src="/pax-wink.webp" alt="" width={330} height={477}/>}
-      <span className="penguin-prop" key={step}>{props[step]}</span>
+      <img className="pax" src={`/${pose.image}.webp`} alt="" fetchPriority={step===0?'high':'auto'}/>
+      {step===0 && <img className="pax-wink" src="/pax-wink.webp" alt="" width={330} height={477}/>}
+      {pose.prop && <span className="penguin-prop">{pose.prop}</span>}
     </div>
     <div className="art-caption"><span>✦</span>  WITH LOVE, PAX  <span>✦</span></div>
   </div>;
@@ -128,7 +135,7 @@ export default function Home(){
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="final-pax" src="/pax.webp" alt="Pax presenting the bouquet" width={330} height={477}/>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="final-polly" src="/polly.webp" alt="Polly delighted by the bouquet" width={307} height={478}/>
+        <img className="final-polly" src="/polly-happy.webp" alt="Polly delighted by the bouquet" width={401} height={500}/>
         <Bouquet config={config} assembling={step===6}/>
       </div>
       {step===7 && <div className="final-details">

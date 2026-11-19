@@ -60,8 +60,10 @@ order by 1 desc;
 
 ## Edit the gift
 
+If you already deployed the first version, update the files in the same Git repository and push to the connected branch. Keep your existing Supabase project and Vercel environment variables. The character update uses the existing database schema.
+
 - app/page.tsx contains the questionnaire, penguin scenes and exact welcome/final copy.
 - app/style.css contains the responsive layout, character motion and reduced-motion styles.
 - lib/gift.ts defines the answer choices, palette and note. If choices change, update the SQL constraints too.
 - lib/bouquet.ts builds the custom flower geometry, wrapping and four accessories. app/bouquet-view.tsx handles WebGL and rotation.
-- public/ contains transparent cutouts derived from the supplied Pax and Polly references, including an alternate wink frame for Pax. Props, tilt and motion change with the question.
+- public/ contains transparent cutouts derived from the supplied Pax and Polly references. The comic panels supply Pax's open-flipper, curious, and ribbon poses and Polly's happy reaction. The original Pax portrait supplies the welcome wink and the letter scene.

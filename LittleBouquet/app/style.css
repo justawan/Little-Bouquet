@@ -43,14 +43,15 @@ h1 em{font-weight:400;color:#ac4b72}
 .pax-movement{position:relative;width:52%;max-width:260px;transform-origin:50% 85%;animation:pax-arrives .55s both,pax-breathe 4s .55s ease-in-out infinite}
 .pax{display:block;width:100%;height:auto;filter:drop-shadow(0 7px 0 #864b6b0d)}
 .pax-wink{display:block;position:absolute;inset:0;width:100%;height:auto;opacity:0;animation:wink 5s step-end infinite}
-.pose-3 .pax-wink{opacity:1;animation:none}
 @keyframes wink{0%,88%,93%{opacity:0}89%,92%{opacity:1}}
 .ground{position:absolute;width:41%;height:5%;background:#9f648346;border-radius:50%;top:79%;filter:blur(7px)}
 .penguin-prop{position:absolute;right:-2%;top:55%;padding:6px;font-size:clamp(1.7rem,4vw,4rem);line-height:1;color:#b95981;filter:drop-shadow(0 4px 4px #a4587635);transform:rotate(15deg);animation:prop-in .44s both}
 .pose-0 .penguin-prop{top:18%;right:-16%;font-family:var(--serif);transform:rotate(17deg)}
+.pose-1 .pax-movement,.pose-2 .pax-movement,.pose-3 .pax-movement,.pose-4 .pax-movement{width:66%;max-width:310px}
+.pose-1 .penguin-prop{top:48%;right:-1%;transform:rotate(24deg)}
 .pose-2 .pax-movement{rotate:-6deg}
+.pose-2 .penguin-prop{top:28%;right:-7%}
 .pose-3 .pax-movement{rotate:5deg}
-.pose-3 .penguin-prop{right:-12%;top:52%}
 .pose-4 .pax-movement{rotate:-4deg}
 .pose-5 .penguin-prop{right:2%;top:62%;transform:rotate(-13deg)}
 .doodle{position:absolute;font-family:var(--serif);font-size:2.25rem;color:#bc6588;line-height:1}
@@ -87,7 +88,8 @@ footer span{color:#ad4f75;margin-right:4px}
 .scene-halo{position:absolute;z-index:-2;width:70%;height:91%;border-radius:50%;background:radial-gradient(ellipse,#fffcf3,#fffcf300 70%);top:1%}
 .final-scene img{position:absolute;bottom:52px;width:24%;max-width:182px;height:auto;filter:drop-shadow(0 12px 9px #8d486824);animation:pax-breathe 3.5s ease-in-out infinite}
 .final-pax{left:13.2%;rotate:12deg;scale:-1 1}
-.final-polly{right:12%;rotate:-10deg}
+.final-polly{right:12%;rotate:-7deg;scale:-1 1;transition:opacity .4s ease}
+.final-scene:not(.assembling) .final-polly{animation:polly-delight .55s ease-out,pax-breathe 3.5s .55s ease-in-out infinite}
 .bouquet-view{z-index:2;width:min(420px,57%);height:100%;position:relative}
 .canvas{width:100%;height:calc(100% - 37px);touch-action:pan-y;cursor:grab;display:grid;place-items:center}
 .canvas:active{cursor:grabbing}
@@ -116,6 +118,7 @@ footer span{color:#ad4f75;margin-right:4px}
 @keyframes pax-breathe{50%{transform:translateY(-5px) rotate(2deg)}}
 @keyframes prop-in{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
 @keyframes float{50%{transform:translateY(-9px) rotate(10deg);opacity:.6}}
+@keyframes polly-delight{45%{transform:translateY(-12px) rotate(5deg)}}
 @media(max-width:800px){
   .site{width:min(560px,calc(100% - 28px))}
   .site-header{height:67px}
@@ -127,6 +130,7 @@ footer span{color:#ad4f75;margin-right:4px}
   .question-card .halo{width:130px}
   .pax-movement{width:119px}
   .question-card .pax-movement{width:77px}
+  .pose-1 .pax-movement,.pose-2 .pax-movement,.pose-3 .pax-movement,.pose-4 .pax-movement{width:109px}
   .ground{width:100px;top:78%}
   .penguin-prop{font-size:1.8rem}
   .art-caption{bottom:10px;font-size:.56rem}
