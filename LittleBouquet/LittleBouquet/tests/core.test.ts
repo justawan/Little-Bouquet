@@ -35,13 +35,25 @@ test('submit endpoint validates inputs, handles storage failures, and returns st
   const previousUrl=process.env.SUPABASE_URL;
   const previousKey=process.env.SUPABASE_SECRET_KEY;
   process.env.SUPABASE_URL='https://example.test';
-  process.env.SUPABASE_SECRET_KEY='test-secret';
+  process.env.SUPABASE_SECRET_KEY='sb_secret_test';
   const request=(payload:unknown)=>new Request('https://gift.test/api/submit',{
     method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload),
   });
   try {
     assert.equal((await POST(request({id,answers:{...base,flower:'invalid'}}))).status,400);
     assert.equal((await POST(request({id,answers:{...base,message:'x'.repeat(10_001)}}))).status,400);
+    delete process.env.SUPABASE_URL;
+    assert.match((await (await POST(request({id,answers:base}))).json()).message,/CONFIG_MISSING/);
+    process.env.SUPABASE_URL='https://example.test\n';
+    process.env.SUPABASE_SECRET_KEY='sb_publishable_wrong';
+    assert.match((await (await POST(request({id,answers:base}))).json()).message,/CONFIG_KEY/);
+    process.env.SUPABASE_SECRET_KEY=' sb_secret_test\n';
+    for(const [status,code] of [[401,'SUPABASE_ACCESS'],[403,'SUPABASE_ACCESS'],[404,'SUPABASE_RPC']] as const) {
+      globalThis.fetch=async()=>new Response('private upstream details',{status});
+      const failed=await POST(request({id,answers:base}));
+      assert.equal(failed.status,503);
+      assert.match((await failed.json()).message,new RegExp(code));
+    }
     globalThis.fetch=async()=>{throw new Error('Connection interrupted');};
     assert.equal((await POST(request({id,answers:base}))).status,503);
     globalThis.fetch=async()=>Response.json('limited');
@@ -50,7 +62,7 @@ test('submit endpoint validates inputs, handles storage failures, and returns st
     assert.equal((await POST(request({id,answers:base}))).status,409);
     globalThis.fetch=async(url,options)=>{
       assert.equal(String(url),'https://example.test/rest/v1/rpc/save_bouquet');
-      assert.equal(new Headers(options?.headers).get('apikey'),'test-secret');
+      assert.equal(new Headers(options?.headers).get('apikey'),'sb_secret_test');
       const saved=JSON.parse(String(options?.body));
       assert.equal(saved.p_id,id);
       assert.equal(saved.p_message,'hello');

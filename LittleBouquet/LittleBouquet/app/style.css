@@ -37,27 +37,6 @@ h1 em{font-weight:400;color:#ac4b72}
 .secondary,.text-button{background:transparent;border:1px solid var(--line);color:var(--berry)}
 .secondary:hover,.text-button:hover{background:#f9e9ef}
 .text-button{border-color:transparent}
-.penguin-art{position:relative;isolation:isolate;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 32%,#ffe9ed 0%,transparent 63%),linear-gradient(144deg,#f7cbd8 0%,#f4d8e6 51%,#e8dafa 100%)}
-.penguin-art::after{content:"";position:absolute;z-index:-1;inset:0;opacity:.62;background-image:radial-gradient(#ffffffb9 1px, transparent 1.4px);background-size:23px 23px;mask-image:linear-gradient(125deg,#000,transparent 35%,transparent 66%,#000)}
-.halo{position:absolute;z-index:-1;width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 46% 36%,#fffaf2,#fce4e9 72%);box-shadow:0 0 0 12px #fff8ed24,0 0 0 13px #fff8ed8c;border:1px solid #fff9ef;top:50%;left:50%;transform:translate(-50%,-52%)}
-.pax-movement{position:relative;width:52%;max-width:260px;transform-origin:50% 85%;animation:pax-arrives .55s both,pax-breathe 4s .55s ease-in-out infinite}
-.pax{display:block;width:100%;height:auto;filter:drop-shadow(0 7px 0 #864b6b0d)}
-.pax-wink{display:block;position:absolute;inset:0;width:100%;height:auto;opacity:0;animation:wink 5s step-end infinite}
-@keyframes wink{0%,88%,93%{opacity:0}89%,92%{opacity:1}}
-.ground{position:absolute;width:41%;height:5%;background:#9f648346;border-radius:50%;top:79%;filter:blur(7px)}
-.penguin-prop{position:absolute;right:-2%;top:55%;padding:6px;font-size:clamp(1.7rem,4vw,4rem);line-height:1;color:#b95981;filter:drop-shadow(0 4px 4px #a4587635);transform:rotate(15deg);animation:prop-in .44s both}
-.pose-0 .penguin-prop{top:18%;right:-16%;font-family:var(--serif);transform:rotate(17deg)}
-.pose-1 .pax-movement,.pose-2 .pax-movement,.pose-3 .pax-movement,.pose-4 .pax-movement{width:66%;max-width:310px}
-.pose-1 .penguin-prop{top:48%;right:-1%;transform:rotate(24deg)}
-.pose-2 .pax-movement{rotate:-6deg}
-.pose-2 .penguin-prop{top:28%;right:-7%}
-.pose-3 .pax-movement{rotate:5deg}
-.pose-4 .pax-movement{rotate:-4deg}
-.pose-5 .penguin-prop{right:2%;top:62%;transform:rotate(-13deg)}
-.doodle{position:absolute;font-family:var(--serif);font-size:2.25rem;color:#bc6588;line-height:1}
-.d1{top:23%;left:17%;color:white;font-size:2.8rem}.d2{top:14%;right:20%;rotate:12deg}.d3{bottom:23%;right:18%;color:#ae83c4;font-size:1.7rem}.d4{bottom:24%;left:14%;color:#fff8f1}.d5{top:34%;right:13%;color:#9b68b3}.d6{bottom:15%;left:25%;font-size:1.28rem;rotate:-15deg}
-.art-caption{position:absolute;bottom:23px;font-size:.66rem;letter-spacing:.21em;color:#744d69;font-weight:800}
-.art-caption span{margin:0 6px;color:#ae5276}
 .question-card .card-body{padding-inline:clamp(32px,4.3vw,67px)}
 .question-card h1{font-size:clamp(2.2rem,4.05vw,3.75rem);margin:13px 0 22px}
 .question-card .question-description{font-size:.97rem;margin:-9px 0 19px;max-width:none}
@@ -86,10 +65,6 @@ footer span{color:#ad4f75;margin-right:4px}
 .final-copy p{max-width:none;margin:0 auto}
 .final-scene{position:relative;isolation:isolate;height:410px;width:min(880px,100%);margin:0 auto;display:grid;place-items:center}
 .scene-halo{position:absolute;z-index:-2;width:70%;height:91%;border-radius:50%;background:radial-gradient(ellipse,#fffcf3,#fffcf300 70%);top:1%}
-.final-scene img{position:absolute;bottom:52px;width:24%;max-width:182px;height:auto;filter:drop-shadow(0 12px 9px #8d486824);animation:pax-breathe 3.5s ease-in-out infinite}
-.final-pax{left:13.2%;rotate:12deg;scale:-1 1}
-.final-polly{right:12%;rotate:-7deg;scale:-1 1;transition:opacity .4s ease}
-.final-scene:not(.assembling) .final-polly{animation:polly-delight .55s ease-out,pax-breathe 3.5s .55s ease-in-out infinite}
 .bouquet-view{z-index:2;width:min(420px,57%);height:100%;position:relative}
 .canvas{width:100%;height:calc(100% - 37px);touch-action:pan-y;cursor:grab;display:grid;place-items:center}
 .canvas:active{cursor:grabbing}
@@ -101,8 +76,6 @@ footer span{color:#ad4f75;margin-right:4px}
 .rotate button:hover{background:#f8e0e9}
 .scene-heart{position:absolute;color:#bd7194;font:2rem var(--serif);animation:float 4s ease-in-out infinite}
 .heart-a{left:23%;top:14%}.heart-b{right:21%;top:22%;animation-delay:-1.5s}.heart-c{right:28%;top:7%;font-size:1.4rem;animation-delay:-.5s}
-.assembling .final-polly{opacity:.35}
-.assembling .scene-heart{animation:float 1s ease-in-out infinite}
 .final-details{padding:12px 15px 18px}
 .final-details p{font-size:.9rem;color:var(--muted);margin:0 0 1px}
 .final-details p span{margin:0 5px}
@@ -114,38 +87,18 @@ footer span{color:#ad4f75;margin-right:4px}
 .love-note p{font:italic 1.25rem/1.45 var(--serif);margin:10px 0 19px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @keyframes enter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
-@keyframes pax-arrives{from{opacity:0;scale:.94}to{opacity:1;scale:1}}
-@keyframes pax-breathe{50%{transform:translateY(-5px) rotate(2deg)}}
-@keyframes prop-in{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
 @keyframes float{50%{transform:translateY(-9px) rotate(10deg);opacity:.6}}
-@keyframes polly-delight{45%{transform:translateY(-12px) rotate(5deg)}}
 @media(max-width:800px){
   .site{width:min(560px,calc(100% - 28px))}
   .site-header{height:67px}
   .gift-card{grid-template-columns:1fr;min-height:0;margin:0;border-radius:25px}
   .card-body,.question-card .card-body{padding:27px clamp(18px,5.4vw,40px) 29px}
-  .penguin-art{height:clamp(205px,38svh,255px)}
-  .question-card .penguin-art{height:165px}
-  .halo{width:220px}
-  .question-card .halo{width:130px}
-  .pax-movement{width:119px}
-  .question-card .pax-movement{width:77px}
-  .pose-1 .pax-movement,.pose-2 .pax-movement,.pose-3 .pax-movement,.pose-4 .pax-movement{width:109px}
-  .ground{width:100px;top:78%}
-  .penguin-prop{font-size:1.8rem}
-  .art-caption{bottom:10px;font-size:.56rem}
-  .question-card .art-caption{display:none}
-  .doodle{font-size:1.6rem}
-  .d1{font-size:2rem}
   .welcome-card h1{font-size:clamp(2.75rem,9.5vw,4rem);margin:15px 0 12px}
   .welcome-card p{margin-bottom:20px}
   .question-card h1{margin:12px 0 17px}
   .final-card{margin:0;border-radius:25px}
   .final-copy p{font-size:.95rem}
   .final-scene{height:310px}
-  .final-scene img{width:26%;bottom:54px}
-  .final-pax{left:4%}
-  .final-polly{right:4%}
   .bouquet-view{width:62%}
   .heart-a{left:12%;top:23%}.heart-b{right:10%;top:28%}
   footer{padding:17px 0}
@@ -156,6 +109,75 @@ footer span{color:#ad4f75;margin-right:4px}
   .option-icon{width:29px;height:32px;font-size:1rem}
   .option strong{font-size:.85rem}
   .primary,.secondary{padding-inline:14px}
-  .question-card .penguin-art{height:133px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* The decorations sit behind the gift and never intercept input. */
+.site{position:relative;isolation:isolate}
+.atmosphere{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.site-header{height:86px}
+.gift-card,.final-card{
+  width:min(100%,660px);
+  margin:auto;
+  background:linear-gradient(145deg,#fffdfcf5,#fff9f7ec);
+  border-color:#fff;
+}
+.gift-card{display:block;min-height:0}
+.card-body,.question-card .card-body{padding:clamp(24px,5vw,62px)}
+.welcome-card .card-body{align-items:center;text-align:center;padding-block:clamp(45px,8vw,101px)}
+.welcome-card h1{font-size:clamp(2.55rem,7vw,4.9rem)}
+.question-card h1{font-size:clamp(2.15rem,5vw,3.45rem)}
+.final-card{width:min(100%,750px)}
+.final-scene{height:382px}
+.bouquet-view{width:min(420px,88%)}
+footer{font-weight:700;letter-spacing:.16em;font-size:.68rem}
+.photo,.balloon,.drift,.twinkle{position:absolute}
+.photo{
+  display:grid;place-items:center;width:clamp(78px,11vw,138px);aspect-ratio:4/5;
+  padding:10px 10px 18px;border:1px solid #fff9;border-radius:13px;
+  background:linear-gradient(160deg,#fffdf9cc,#fff3f7a6);
+  box-shadow:0 13px 35px #94547619;opacity:.64;animation:photo-sway 12s ease-in-out infinite;
+}
+.photo img{width:100%;height:100%;min-height:0;object-fit:contain;filter:saturate(.84)}
+.photo-pavel{left:max(24px,calc(50% - 535px));top:23%;rotate:-13deg}
+.photo-polly{right:max(24px,calc(50% - 535px));bottom:19%;rotate:12deg;animation-delay:-5s}
+.balloon{
+  width:62px;height:99px;display:grid;place-items:start center;line-height:1;
+  font-size:64px;color:#d480a6;opacity:.52;
+  animation:balloon-sway 10s ease-in-out infinite;
+}
+.balloon span{filter:drop-shadow(0 6px 6px #a851792b);text-shadow:-3px -3px 0 #f4bfd4}
+.balloon::after{
+  content:'';position:absolute;top:56px;left:52%;width:9px;height:40px;
+  border-left:1px solid #b76e90;border-radius:50%;rotate:11deg;
+}
+.balloon-one{right:14%;top:16%;rotate:13deg}
+.balloon-two{left:12%;bottom:14%;rotate:-13deg;scale:.8;animation-delay:-4s;color:#b089c1}
+.drift{color:#b95c86;font:1.8rem var(--serif);opacity:.38;animation:heart-drift 9s ease-in-out infinite}
+.drift-one{left:5%;top:48%;rotate:-16deg}
+.drift-two{right:6%;top:44%;font-size:1.05rem;animation-delay:-4s}
+.drift-three{left:26%;top:12%;animation-delay:-3s}
+.drift-four{right:26%;bottom:9%;animation-delay:-7s}
+.twinkle{color:#a477b6;font:1.55rem var(--serif);animation:shimmer 6s ease-in-out infinite;opacity:.51}
+.twinkle-one{left:18%;top:49%;animation-delay:-1s}
+.twinkle-two{right:17%;top:47%;font-size:1rem;animation-delay:-3s}
+.twinkle-three{right:7%;bottom:10%;animation-delay:-5s}
+.twinkle-four{left:7%;top:13%;font-size:.92rem}
+@keyframes photo-sway{50%{transform:translateY(-9px) rotate(4deg)}}
+@keyframes balloon-sway{50%{transform:translate(7px,-17px) rotate(-6deg)}}
+@keyframes heart-drift{50%{transform:translate(10px,-18px) rotate(12deg);opacity:.19}}
+@keyframes shimmer{50%{opacity:.23;transform:scale(.76)}}
+@media(max-width:800px){
+  .site-header{height:73px}
+  .gift-card,.final-card{margin:0 auto}
+  .card-body,.question-card .card-body{padding:clamp(22px,6vw,43px)}
+  .welcome-card .card-body{padding-block:clamp(43px,10vw,66px)}
+  .final-scene{height:310px}
+  .photo{width:65px;padding:5px 5px 9px;opacity:.51}
+  .photo-pavel{top:47px;left:-22px}
+  .photo-polly{bottom:9%;right:-14px}
+  .balloon-one{top:31px;right:9%;scale:.58}
+  .balloon-two{bottom:6%;left:3%;scale:.64}
+  .drift-three{left:36%;top:7.5%}
+  .twinkle-four{left:11%;top:15%}
+}

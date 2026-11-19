@@ -7,34 +7,27 @@ const Bouquet=dynamic(()=>import('./bouquet-view'),{ssr:false,loading:()=> <div 
 const sections=[
   {label:'Flowers',title:'What flowers do you like the most?',key:'flower',items:flowers,icons:['🌹','🌷','🌸','💐'],caption:['Classic & romantic','Simple & sweet','Soft & fluffy','Graceful & bright']},
   {label:'Color',title:"What's your favorite color?",key:'color',items:Object.keys(colors),icons:[],caption:[]},
-  {label:'Size',title:'What size bouquet would you like?',key:'size',items:sizes,icons:['✿','✿','✿','✧'],caption:['A sweet little bunch','Just the right handful','A whole armful','Let Pax pick']},
+  {label:'Size',title:'What size bouquet would you like?',key:'size',items:sizes,icons:['✿','✿','✿','✧'],caption:['A sweet little bunch','Just the right handful','A whole armful','Let Pavel Pick']},
   {label:'Decoration',title:'What would make your bouquet even cuter?',key:'decoration',items:decorations,icons:['🧸','🎀','💌','♥'],caption:[]},
 ] as const;
 const initial={message:''};
 const draftKey='little-bouquet:draft-v1';
-const poses=[
-  {image:'pax',prop:'♡'},
-  {image:'pax-spread',prop:'🌷'},
-  {image:'pax-curious',prop:'🎨'},
-  {image:'pax-spread',prop:''},
-  {image:'pax-ribbon',prop:''},
-  {image:'pax',prop:'💌'},
-];
+const poses=['pavel','pavel-spread','pavel-curious','pavel-spread','pavel-ribbon','pavel','pavel-spread','pavel-spread'];
 
-function PenguinArt({step}:{step:number}) {
-  const pose=poses[step];
-  return <div className={`penguin-art pose-${step}`} aria-hidden="true">
-    <div className="halo" />
-    <span className="doodle d1">✧</span><span className="doodle d2">♡</span><span className="doodle d3">✦</span>
-    <span className="doodle d4">✧</span><span className="doodle d5">·</span><span className="doodle d6">♡</span>
-    <div className="ground" />
-    <div className="pax-movement" key={step}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="pax" src={`/${pose.image}.webp`} alt="" fetchPriority={step===0?'high':'auto'}/>
-      {step===0 && <img className="pax-wink" src="/pax-wink.webp" alt="" width={330} height={477}/>}
-      {pose.prop && <span className="penguin-prop">{pose.prop}</span>}
+function Atmosphere({step}:{step:number}) {
+  return <div className="atmosphere" aria-hidden="true">
+    <div className="photo photo-pavel">
+      <img key={poses[step]} src={`/${poses[step]}.webp`} alt="" />
     </div>
-    <div className="art-caption"><span>✦</span>  WITH LOVE, PAX  <span>✦</span></div>
+    <div className="photo photo-polly">
+      <img src={step===7?'/polly-happy.webp':'/polly.webp'} alt="" />
+    </div>
+    <div className="balloon balloon-one"><span>♥</span></div>
+    <div className="balloon balloon-two"><span>♥</span></div>
+    <span className="drift drift-one">♡</span><span className="drift drift-two">♥</span>
+    <span className="drift drift-three">♡</span><span className="drift drift-four">♡</span>
+    <span className="twinkle twinkle-one">✧</span><span className="twinkle twinkle-two">✦</span>
+    <span className="twinkle twinkle-three">✧</span><span className="twinkle twinkle-four">✦</span>
   </div>;
 }
 
@@ -114,6 +107,7 @@ export default function Home(){
   const question=sections[step-1];
   const current=config && step>=6;
   return <div className="site">
+    <Atmosphere step={step}/>
     <header className="site-header"><div className="wordmark"><span>♥</span> Little Bouquet</div>
       {step>0 && step<=5 && <div className="progress" aria-label={`Question ${step} of 5`}>
         <div aria-hidden="true">{String(step).padStart(2,'0')} / 05</div>
@@ -127,15 +121,11 @@ export default function Home(){
         <h1 ref={title} tabIndex={-1}>{step===6?'Putting it together…':'A Little Bouquet, Just for You 💗'}</h1>
         {step===7 && <p>Made with a little bit of magic and a lot of care.</p>}
       </div>
-      <div className={`final-scene ${step===6?'assembling':''}`}>
+      <div className="final-scene">
         <div className="scene-halo" aria-hidden="true"/>
         <span className="scene-heart heart-a" aria-hidden="true">♡</span>
         <span className="scene-heart heart-b" aria-hidden="true">♡</span>
         <span className="scene-heart heart-c" aria-hidden="true">✧</span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="final-pax" src="/pax.webp" alt="Pax presenting the bouquet" width={330} height={477}/>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="final-polly" src="/polly-happy.webp" alt="Polly delighted by the bouquet" width={401} height={500}/>
         <Bouquet config={config} assembling={step===6}/>
       </div>
       {step===7 && <div className="final-details">
@@ -148,7 +138,6 @@ export default function Home(){
         <form method="dialog"><button className="secondary">Close</button></form>
       </dialog>}
     </main> : <main className={`gift-card ${step ? 'question-card' : 'welcome-card'}`}>
-      <PenguinArt step={step} />
       <section className="card-body" key={step}>
         {step===0 ? <>
           <div className="eyebrow"><span>♡</span> A LITTLE GIFT FOR YOU</div>
@@ -183,6 +172,6 @@ export default function Home(){
         </form>}
       </section>
     </main>}
-    <footer><span aria-hidden="true">♡</span> Made with a little love</footer>
+    <footer><span aria-hidden="true">♡</span> WITH LOVE, PAVEL</footer>
   </div>;
 }

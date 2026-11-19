@@ -1,6 +1,6 @@
 # Little Bouquet
 
-A single-page bouquet gift built with Next.js, TypeScript and Three.js. Pax guides the recipient through five questions, then presents the generated arrangement to Polly. Each saved submission includes the answers, the optional message and the deterministic 3D recipe.
+A single-page bouquet gift built with Next.js, TypeScript and Three.js. Pavel guides the recipient through five questions, then presents the generated arrangement to Polly. Each saved submission includes the answers, the optional message and the deterministic 3D recipe.
 
 ## Set up Supabase
 
@@ -66,4 +66,16 @@ If you already deployed the first version, update the files in the same Git repo
 - app/style.css contains the responsive layout, character motion and reduced-motion styles.
 - lib/gift.ts defines the answer choices, palette and note. If choices change, update the SQL constraints too.
 - lib/bouquet.ts builds the custom flower geometry, wrapping and four accessories. app/bouquet-view.tsx handles WebGL and rotation.
-- public/ contains transparent cutouts derived from the supplied Pax and Polly references. The comic panels supply Pax's open-flipper, curious, and ribbon poses and Polly's happy reaction. The original Pax portrait supplies the welcome wink and the letter scene.
+- public/ contains transparent cutouts derived from the supplied Pavel and Polly references. The comic panels supply Pavel's open-flipper, curious, and ribbon poses and Polly's happy reaction. The small framed background portraits change with the current question.
+
+## If saving displays an error code
+
+Open the **same Vercel project whose site address you are testing**. If two projects import the same GitHub repository, their environment variables are separate.
+
+| Code | What to check |
+| --- | --- |
+| CONFIG_MISSING | Add SUPABASE_URL and SUPABASE_SECRET_KEY to the project's Production environment, then redeploy. The Vercel function log shows which variable name is missing. |
+| CONFIG_URL | Use the HTTPS Project URL from Supabase Connect. |
+| CONFIG_KEY or SUPABASE_ACCESS | Use a current sb_secret_ key from the same Supabase project as the URL. Redeploy after saving it in Vercel. |
+| SUPABASE_RPC | Run [check-saving.sql](supabase/check-saving.sql) in that Supabase project's SQL Editor. If any result is false, apply [schema.sql](supabase/schema.sql) in the same project. |
+| SUPABASE_CONNECTION or SUPABASE_RESPONSE | Check Vercel Logs for /api/submit and confirm that your Supabase project is active. The log omits secrets and questionnaire content. |
