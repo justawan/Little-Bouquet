@@ -57,14 +57,13 @@ export function makeBouquet(config: Config) {
     state = (Math.imul(state,1664525)+1013904223) >>> 0;
     return state / 4294967296;
   };
-  const stalk = material('#47714e'), foliage = material('#679464'), sage = material('#8ba77b');
+  const stalk = material('#47714e'), filament = material('#679464');
   const pollen = material('#f3bd58');
   const color = new T.Color(colors[config.color]);
   const rings = styles[config.flower].map(([count,length,width,lift,curl],index,all) => ({
     count, geometry:petal(length,width,lift,curl,config.flower==='Lilies'),
     mat:material(color.clone().lerp(new T.Color(index ? '#fff4ed' : '#8e425a'), index/all.length*.22+.07)),
   }));
-  const leaf = petal(.68,.16,.25,-.09,true);
   const spread = config.count === 5 ? .83 : config.count === 9 ? 1.15 : 1.43;
   const petalTransform = new T.Object3D();
   for (let i=0;i<config.count;i++) {
@@ -94,18 +93,14 @@ export function makeBouquet(config: Config) {
       for (let j=0;j<6;j++) {
         const a = j*Math.PI/3;
         const tip = new T.Vector3(Math.cos(a)*.15,.29,Math.sin(a)*.15);
-        line(bloom,[new T.Vector3(),tip.clone().multiplyScalar(.64),tip],.012,foliage);
+        line(bloom,[new T.Vector3(),tip.clone().multiplyScalar(.64),tip],.012,filament);
         ellipsoid(bloom,pollen,tip.x,tip.y,tip.z,.044,.025,.031);
       }
     }
     line(base,[new T.Vector3(x*.12,-1.71,z*.15),new T.Vector3(x*.4,-.44,z*.3),bloom.position],.027,stalk);
-    for(let j=0;j<2;j++) {
-      const mesh = new T.Mesh(leaf,j ? foliage : sage);
-      mesh.position.set(x*.78,.38+j*.34,z*.72);
-      mesh.rotation.set(-.42,Math.PI/2-angle+j*2.7,-.13);
-      mesh.scale.setScalar(.85+random()*.42);
-      base.add(mesh);
-    }
+    // Keep existing bouquet seeds aligned after removing the two leaf variations.
+    random();
+    random();
   }
   const tissue = [material('#fae5d7'),material('#edc4c3'),material('#fff0da'),material('#e8aeb7')];
   for (let j=0;j<6;j++) {

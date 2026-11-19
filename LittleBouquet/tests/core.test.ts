@@ -25,6 +25,7 @@ test('3D arrangements include the requested bloom count and accessory',()=>{
     const {blooms,base:wrap,accessory}=makeBouquet(config);
     assert.equal(blooms.length,config.count);
     assert.ok(blooms.every(bloom=>bloom.children.length>=3));
+    assert.equal(wrap.children.length,config.count+6+1); // Stems, paper panels, accessory.
     assert.ok(wrap.children.includes(accessory));
     assert.ok(accessory.children.length>0);
   }

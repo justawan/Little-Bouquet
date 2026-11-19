@@ -66,7 +66,7 @@ If you already deployed the first version, update the files in the same Git repo
 - app/style.css contains the responsive layout, character motion and reduced-motion styles.
 - lib/gift.ts defines the answer choices, palette and note. If choices change, update the SQL constraints too.
 - lib/bouquet.ts builds the custom flower geometry, wrapping and four accessories. app/bouquet-view.tsx handles WebGL and rotation.
-- public/ contains transparent cutouts derived from the supplied Pavel and Polly references. The comic panels supply Pavel's open-flipper, curious, and ribbon poses and Polly's happy reaction. The small framed background portraits change with the current question.
+- public/ contains transparent cutouts derived from the supplied Pavel and Polly references. Pavel's three portraits show a curious expression, a heart pose, and a smile with a rose. The small framed background portraits change with the current question.
 
 ## If saving displays an error code
 

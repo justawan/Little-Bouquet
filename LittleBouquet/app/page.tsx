@@ -12,7 +12,16 @@ const sections=[
 ] as const;
 const initial={message:''};
 const draftKey='little-bouquet:draft-v1';
-const poses=['pavel','pavel-spread','pavel-curious','pavel-spread','pavel-ribbon','pavel','pavel-spread','pavel-spread'];
+const poses=[
+  'pavel-curious',
+  'pavel-flower',
+  'pavel-curious',
+  'pavel-heart',
+  'pavel-heart',
+  'pavel-curious',
+  'pavel-heart',
+  'pavel-flower',
+] as const;
 
 function Atmosphere({step}:{step:number}) {
   return <div className="atmosphere" aria-hidden="true">
